@@ -30,7 +30,7 @@ See [cloud setup and verified status](docs/CLOUD_SETUP.md) for exact implementat
 
 18 local tests and a production build pass. A deployed backend integration run passed 23 checks using disposable accounts, including login/logout, project quota, role enforcement, team invitation acceptance and RLS isolation. Test accounts were removed.
 
-Stripe sandbox billing is configured and passed 19 live-backend checks for Pro/Team Checkout Sessions, test invoices, signed webhook fulfillment, Portal and cancellation. Production/live charging remains disabled. Browser card-form submission and real confirmation/recovery email delivery remain unverified. Team functionality is implemented and gated on server-verified membership.
+Stripe sandbox billing is configured and passed 19 live-backend checks for Pro/Team Checkout Sessions, test invoices, signed webhook fulfillment, Portal and cancellation. Production/live charging remains disabled. Hosted browser card-form submission also passed 5 end-to-end checks, including paid Checkout, webhook Pro activation and Portal access. Real confirmation/recovery email delivery remains unverified. Team functionality is implemented and gated on server-verified membership.
 
 ## Licenses
 
