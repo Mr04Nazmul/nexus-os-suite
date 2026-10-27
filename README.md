@@ -2,7 +2,7 @@
 
 Local-first developer, API and AI workspace by Hossain Najmul.
 
-Production target: https://nexus-os-suite.vercel.app
+Website: https://mr04nazmul.github.io/nexus-os-suite/
 
 ## Run
 
@@ -20,20 +20,18 @@ Validate: `npm run check`, `npm test`, `npm run build`.
 - Supabase email auth integration; server-protected cloud workspace API; Stripe test-only Checkout, Portal and signed subscription webhooks.
 - Help, Privacy and Terms, responsive dark interface.
 
-## Deployment
+## Hosting and cloud services
 
-Vercel imports `Mr04Nazmul/nexus-os-suite`, framework Vite, output `dist`; `/api/index` is a Node function. Enable automatic deployments from main in Vercel project settings. CI runs build and tests on pushes. Manual Pages workflow provides a **static demo only**, without account/backend functions; enable Pages Actions in repository settings first.
+Source, CI and automatic frontend deployment use this GitHub repository and GitHub Pages. No Vercel connection is required. Backend authentication, workspaces, Team roles and test-billing endpoints run in the owner-selected Supabase project.
 
-## Required service setup
+See [cloud setup and verified status](docs/CLOUD_SETUP.md) for exact implementation, configuration and limitations.
 
-No secrets are committed. Configure `.env.example` variables in **Vercel Environment Variables**, never in chat. Create a dedicated Supabase project, apply `docs/schema.sql`, set Site URL and allowed auth redirects to the production origin. Email delivery and account confirmation must be tested before launch.
+## Current verification
 
-Create a Stripe **test** $9 USD monthly recurring price and configure its ID. Register a webhook at `/api/index?action=webhook` for `customer.subscription.created`, `.updated`, `.deleted`. Save its signing secret securely. Backend rejects live Stripe keys and Team checkout. Test a complete subscription lifecycle, duplicate events, cancellation and portal before any commercial launch. Add production-grade per-user provider quotas before enabling an owner-funded cloud AI provider broadly.
+18 local tests and a production build pass. A deployed backend integration run passed 23 checks using disposable accounts, including login/logout, project quota, role enforcement, team invitation acceptance and RLS isolation. Test accounts were removed.
 
-## Limits / outstanding
-
-Live accounts, RLS against a dedicated database, cloud saves and Stripe lifecycle are **not verified until credentials/schema are configured**. Team workspaces, invites, permissions and organization administration are not implemented. SQL is a formatter, not an executable database. PDF text creation uses a standard Latin font; uploaded PDF Q&A/OCR is not implemented. Retrieval is lexical chunk ranking, not vector embeddings. API and model directory records are not prepaid service access. Browser automation is limited to supported local workflow execution, not arbitrary external websites.
+Stripe account credentials and real email delivery/redirect verification remain necessary before calling the subscription business production-ready. No charges are enabled. Team functionality is implemented and gated on server-verified membership; it is not offered as a working paid purchase until billing is configured.
 
 ## Licenses
 
-See `THIRD_PARTY_NOTICES.md` and `licenses/`. Third-party API, dataset and model terms apply separately. The additional commercial agreements described by the owner were not supplied; required notices are retained. Product source is proprietary unless the owner chooses otherwise.
+See THIRD_PARTY_NOTICES.md and licenses/. API and model terms apply separately.
