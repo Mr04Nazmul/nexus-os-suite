@@ -1,5 +1,7 @@
-name: Static demonstration
+name: Deploy NEXUS OS to GitHub Pages
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -9,7 +11,7 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  demo:
+  website:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -21,10 +23,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm run check
       - run: npm test
       - run: npm run build
         env:
           PAGES_BUILD: '1'
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
