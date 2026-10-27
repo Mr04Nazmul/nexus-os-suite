@@ -39,3 +39,18 @@ Allow `https://mr04nazmul.github.io/nexus-os-suite/**` under Supabase Authentica
 18 automated local tests pass. A disposable backend integration run passed 23 checks against the deployed database/function: real email/password login/logout, Free quota, cross-user isolation, Team create, invitation/replay, viewer denial, role change, editor shared save, RLS and subscription tamper denial. Temporary test users and their organizations were removed; the temporary QA endpoint was replaced with an inert 410 handler requiring JWT.
 
 Stripe end-to-end testing and actual confirmation/recovery email delivery remain unverified. No test user was retained and no real account was granted a synthetic paid subscription.
+
+## Sandbox provisioned on 2026-10-27
+
+Selected Stripe sandbox: `acct_1UV08HKYXlIqyCWm` (Nexus sandbox).
+
+- Pro recurring test price: `price_1UV1bFKYXlIqyCWmotrXItqx` ($9 USD/month).
+- Team recurring test price: `price_1UV1bOKYXlIqyCWmrih652d8` ($29 USD/month).
+- Portal configuration: `bpc_1UV1cCKYXlIqyCWmM5iZ1K6A` (payment-method updates, invoice history, end-of-period cancellation).
+- Webhook endpoint: `we_1UV1cMKYXlIqyCWmAQQrApXM`.
+
+The signing secret and price/portal configuration are encrypted in Supabase Vault. Only service_role can execute the configuration RPC; public clients cannot read it. No Stripe secret appears in repository files.
+
+**Remaining credential:** In Supabase Edge Function Secrets, set `NEXUS_STRIPE_SECRET_KEY` to a restricted test key (`rk_test_...`) from this exact sandbox. Allow Customers read/write, Checkout Sessions read/write, Subscriptions read, Prices read and Billing Portal Sessions write (including dependencies Stripe indicates). A regular test secret key is compatible, but a restricted key is preferred. The backend rejects live keys. Do not paste keys into chat.
+
+The Stripe account connection authorizes connector operations; it does not supply a durable server API credential. Until this key is set, website checkout is intentionally unavailable and the complete billing lifecycle is unverified. Sandbox products and webhook creation alone do not establish working subscription fulfillment.
