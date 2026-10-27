@@ -37,7 +37,7 @@ Webhooks process subscription created/updated/deleted events by fetching canonic
 - 19 deployed Stripe checks passed: correct sandbox identity; Pro/Team authenticated Checkout Session creation with exact prices; API-created test-paid subscriptions; real signed webhook activation; Customer Portal; access retained during scheduled cancellation; duplicate checkout rejection; immediate cancellation revocation.
 - Disposable customers, subscriptions and application accounts were cleaned up, with zero temporary billing accounts remaining. QA endpoints were disabled.
 
-The billing verification created subscriptions through Stripe's API using test payment tokens. Browser card-form submission was not exercised. Real signup/recovery email delivery remains unverified. GitHub Pages auth redirect URLs were added without changing the shared project's Site URL or removing the existing staging app callback.
+The billing verification also completed a hosted browser card-form submission using Stripe's public sandbox test card. The browser returned to NEXUS OS, the Checkout Session was paid and complete, the real signed webhook granted Pro, and Customer Portal access succeeded. These 5 additional end-to-end checks passed. The disposable buyer and test subscription were cleaned up; the browser QA endpoint was disabled. Real signup/recovery email delivery remains unverified. GitHub Pages auth redirect URLs were added without changing the shared project's Site URL or removing the existing staging app callback.
 
 ## Operations
 
